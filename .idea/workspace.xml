@@ -5,19 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b56d3bef-3672-45ff-b42b-faa6adeec2a1" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/classifier/hyperparameter_tuning.ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/affiliationstrings_ids_with_tokens.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/tokenized_dataset/affiliationstrings_ids_with_tokens.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/blocking/er_blocking_candidates_k20.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/classifier_predictions/classifier_predictions_xgb.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/clustering_algorithm/clusters_connected_components.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/feature_extraction/er_blocking_candidates_k20_features.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/feature_extraction/er_blocking_candidates_k20_features_labeled.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/original/affiliationstrings_ids_with_tokens.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/ner/ner_extractor.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/ner/ner_extractor.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/ner/token_processor.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/ner/token_processor.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/make_candidate_pairs.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/make_candidate_pairs.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/run_affiliations_ner.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/run_affiliations_ner.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/run_blocking.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/run_blocking.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/classifier_predictions/classifier_predictions_xgb_k40.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/feature_extraction/er_blocking_candidates_k40_features_labeled.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/pairwise_classifier.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/pairwise_classifier.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/run_affiliations_ner.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/run_NER_model.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/src/graph/er_graph_trans.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/train_classifier.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/train_classifier.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/blocking/visualize_blocking_k.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/blocking/visualize_k_value_for_blocking.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/classifier/dataset_labeling/dataset_labeling.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/labeling_feature_extracted_csv.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common_methods.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/common_methods.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,6 +62,7 @@
     &quot;Python.build_graph_from_predictions.executor&quot;: &quot;Run&quot;,
     &quot;Python.dataset_labeling.executor&quot;: &quot;Run&quot;,
     &quot;Python.feautre_extraction.executor&quot;: &quot;Run&quot;,
+    &quot;Python.labeling_feature_extracted_csv.executor&quot;: &quot;Run&quot;,
     &quot;Python.make_candidates.executor&quot;: &quot;Run&quot;,
     &quot;Python.ner_model.executor&quot;: &quot;Run&quot;,
     &quot;Python.run_affiliations_ner.executor&quot;: &quot;Run&quot;,
@@ -92,11 +91,11 @@
       <recent name="C:\Users\Lenovo\PycharmProjects\Entity_Resolution_with_Knowledge_Graphs\src\blocking" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Lenovo\PycharmProjects\Entity_Resolution_with_Knowledge_Graphs\src\classifier" />
+      <recent name="C:\Users\Lenovo\PycharmProjects\Entity_Resolution_with_Knowledge_Graphs\src\features" />
       <recent name="C:\Users\Lenovo\PycharmProjects\Entity_Resolution_with_Knowledge_Graphs\data\tokenized_dataset" />
       <recent name="C:\Users\Lenovo\PycharmProjects\Entity_Resolution_with_Knowledge_Graphs\data\original" />
       <recent name="C:\Users\Lenovo\PycharmProjects\Entity_Resolution_with_Knowledge_Graphs\data\classifier_predictions" />
-      <recent name="C:\Users\Lenovo\PycharmProjects\Entity_Resolution_with_Knowledge_Graphs\data\feature_extraction" />
-      <recent name="C:\Users\Lenovo\PycharmProjects\Entity_Resolution_with_Knowledge_Graphs\data\blocking" />
     </key>
   </component>
   <component name="SharedIndexes">
@@ -126,7 +125,9 @@
       <workItem from="1759215655492" duration="1469000" />
       <workItem from="1759249685116" duration="8234000" />
       <workItem from="1759327495296" duration="8166000" />
-      <workItem from="1760549100678" duration="4152000" />
+      <workItem from="1760549100678" duration="4785000" />
+      <workItem from="1760616940242" duration="9168000" />
+      <workItem from="1760699643039" duration="2009000" />
     </task>
     <servers />
   </component>
@@ -143,6 +144,7 @@
     <SUITE FILE_PATH="coverage/Entity_Resolution_with_Knowledge_Graphs$train_classifier.coverage" NAME="train_classifier Coverage Results" MODIFIED="1759333456182" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts" />
     <SUITE FILE_PATH="coverage/Entity_Resolution_with_Knowledge_Graphs$run_pipeline.coverage" NAME="run_pipeline Coverage Results" MODIFIED="1758125099135" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts" />
     <SUITE FILE_PATH="coverage/Entity_Resolution_with_Knowledge_Graphs$apply_clustering_algorithm.coverage" NAME="apply_clustering_algorithm Coverage Results" MODIFIED="1759263388131" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts" />
+    <SUITE FILE_PATH="coverage/Entity_Resolution_with_Knowledge_Graphs$labeling_feature_extracted_csv.coverage" NAME="labeling_feature_extracted_csv Coverage Results" MODIFIED="1760619471849" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/features" />
     <SUITE FILE_PATH="coverage/Entity_Resolution_with_Knowledge_Graphs$blocking.coverage" NAME="blocking Coverage Results" MODIFIED="1758220782938" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/blocking_optional" />
     <SUITE FILE_PATH="coverage/Entity_Resolution_with_Knowledge_Graphs$build_graph_from_predictions.coverage" NAME="build_graph_from_predictions Coverage Results" MODIFIED="1759335433909" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/graph" />
     <SUITE FILE_PATH="coverage/Entity_Resolution_with_Knowledge_Graphs$apply_transitivity.coverage" NAME="apply_transitivity Coverage Results" MODIFIED="1759261380567" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts" />
