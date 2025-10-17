@@ -8,7 +8,7 @@ import re
 import pandas as pd
 
 # користиме истите правила што ги имаш во geo модулот
-from src.classifier.constraints.geo_constraints import (
+from src.constraints.geo_constraints import (
     GEO_COUNTRIES_WHITE_LIST,
     ACRONYM_MAP_ORDERED,
     _undot_acronyms,

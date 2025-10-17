@@ -111,7 +111,7 @@ def run_apply_constraints_from_csv_single(
 
 if __name__ == "__main__":
     # GEO constraint only
-    from src.classifier.constraints.geo_constraints import geo_mismatch_pairs_to_prune
+    from src.constraints.geo_constraints import geo_mismatch_pairs_to_prune
     from src.common_methods import _id2text
 
     edges = pd.read_csv("../data/classifier_predictions/classifier_predictions_xgb.csv")
