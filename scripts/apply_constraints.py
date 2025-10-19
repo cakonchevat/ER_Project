@@ -18,7 +18,7 @@ def filter_edges_by_geo_constraints(
     src_col: str = "src_id",
     cand_col: str = "cand_id",
     prob_col: str = "prob_match",
-    min_prob: float = 0.30,
+    min_prob: float = 0.45,
     output_csv: Optional[str] = None,
     dropped_log_csv: Optional[str] = None
 ) -> tuple[pd.DataFrame, dict]:
@@ -86,7 +86,7 @@ if __name__ == "__main__":
         src_col="src_id",
         cand_col="cand_id",
         prob_col="prob_match",
-        min_prob=0.30,
+        min_prob=0.45,
         output_csv="../data/classifier_predictions/constraints/classifier_predictions_xgb_filtered.csv",
         dropped_log_csv="../data/classifier_predictions/constraints/classifier_predictions_xgb_dropped_geo.csv",
     )

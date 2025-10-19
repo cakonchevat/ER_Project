@@ -179,5 +179,5 @@ def build_features_for_csv(in_csv: Path, out_dir: Optional[Path] = None) -> Path
 
 
 if __name__ == "__main__":
-    IN_CANDIDATES = Path("../../data/blocking/blocking_candidates_k40.csv")
+    IN_CANDIDATES = Path("../data/blocking/blocking_candidates_k40.csv")
     build_features_for_csv(IN_CANDIDATES)
