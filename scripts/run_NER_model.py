@@ -43,12 +43,12 @@ def process_csv_and_write_tokens(
     tokens_df = TokenProcessor.results_to_tokens_df(results, id_column=id_column)
     merged = TokenProcessor.merge_tokens_into_original_csv(df, tokens_df, id_column=id_column)
 
-    output_path = csv_path.with_name(csv_path.stem + "_with_tokens.csv")
-    output_path.parent.mkdir(parents=True, exist_ok=True)
+    output_dir = Path(__file__).parent.parent / "data" / "tokenized_dataset"
+    output_dir.mkdir(parents=True, exist_ok=True)
+    output_path = output_dir / (csv_path.stem + "_with_tokens.csv")
+
     merged.to_csv(output_path, index=False, encoding="utf-8")
-
     print(f"Updated CSV written: {output_path}")
-
 
 if __name__ == "__main__":
     process_csv_and_write_tokens("../data/original/affiliationstrings_ids.csv")

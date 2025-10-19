@@ -2,7 +2,7 @@ import networkx as nx
 import pandas as pd
 from src.graph.build_graph_from_predictions import build_graph_from_predictions
 
-# load classifier predictions
+# load classifier_predictions predictions
 df_pred = pd.read_csv("../data/classifier_predictions/classifier_predictions_xgb_filtered.csv")
 
 # build graph (weighted by prob_match)

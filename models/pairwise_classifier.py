@@ -53,7 +53,7 @@ def select_threshold_by_fbeta(y_true: np.ndarray, y_prob: np.ndarray, beta: floa
     }
 
 def model_constructor(model_name: str, class_weight: Dict[int, float], scale_pos_weight: float):
-    # The models and its parameters are based on the hyperparameter_tuning results made from the same named ipynb file in src/classifier
+    # The models and its parameters are based on the hyperparameter_tuning results made from the same named ipynb file in src/classifier_predictions
     if model_name == "logreg":
         return LogisticRegression(
             max_iter=2000,
@@ -66,8 +66,8 @@ def model_constructor(model_name: str, class_weight: Dict[int, float], scale_pos
     if model_name == "rf":
         return RandomForestClassifier(
             n_estimators=400,
-            max_depth=None,
-            min_samples_split=2,
+            max_depth=10,
+            min_samples_split=8,
             n_jobs=-1,
             class_weight=class_weight,
             random_state=42
@@ -75,11 +75,11 @@ def model_constructor(model_name: str, class_weight: Dict[int, float], scale_pos
 
     if model_name == "xgb":
         return XGBClassifier(
-            n_estimators=600,
+            n_estimators=450,
             max_depth=6,
-            learning_rate=0.05,
+            learning_rate=0.1,
             subsample=0.9,
-            colsample_bytree=0.9,
+            colsample_bytree=0.8,
             reg_lambda=1.0,
             objective="binary:logistic",
             tree_method="hist",
@@ -183,33 +183,25 @@ def _save_predictions_csv(
     return out
 
 
-def train_and_save_all_models(
-    df: pd.DataFrame,
-    feature_cols: List[str],
-    src_col: str = "src_id",
-    cand_col: str = "cand_id",
-    label_col: str = "label",
-    models: Iterable[str] = ("logreg", "rf", "xgb"),
-    out_dir: str = "../data",
-    file_stem: str = "classifier_predictions",
-    file_suffix: str = ""
-) -> Dict[str, TrainedMatcher]:
-    short = {"logreg": "lr", "rf": "rf", "xgb": "xgb"}
+def train_and_save_all_models(df: pd.DataFrame, feature_cols: List[str],
+    src_col: str = "src_id", cand_col: str = "cand_id", label_col: str = "label",
+    models: Iterable[str] = ("logreg", "rf", "xgb"), out_dir: str = "../data",
+    file_stem: str = "classifier_predictions", file_suffix: str = "") -> Dict[str, TrainedMatcher]:
     tms = {}
 
-    for m in models:
-        print(f"\nTraining model: {m.upper()}")
+    for model in models:
+        print(f"\nTraining model: {model.upper()}")
         tm = train_pairwise_matcher(
             df=df,
             feature_cols=feature_cols,
             label_col=label_col,
-            model_name=m,
+            model_name=model,
             n_folds=5,
             random_state=42
         )
-        tms[m] = tm
+        tms[model] = tm
 
-        out_path = f"{out_dir}/{file_stem}_{short[m]}{file_suffix}.csv"
+        out_path = f"{out_dir}/{file_stem}_{model}{file_suffix}.csv"
         _save_predictions_csv(tm, df, src_col, cand_col, out_path)
         print(f"Saved predictions to {out_path}")
 

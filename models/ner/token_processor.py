@@ -56,11 +56,20 @@ class TokenProcessor:
     def results_to_tokens_df(results: List[Dict[str, Any]], id_column: str = "id1") -> pd.DataFrame:
         rows = []
         for item in results:
-            entities = item.get("entities", [])
+            entities = item.get("entities", []) or []
+            tokens = TokenProcessor.extracted_tokens(entities)
+            tokens_labeled = TokenProcessor.extracted_tokens_with_labels(entities)
+
+            # Fallback: if no entities are found, leave the original string
+            if not tokens:
+                raw = (item.get("affiliation") or "").strip()
+                tokens = raw
+                tokens_labeled = f"{raw}<RAW>" if raw else ""
+
             rows.append({
                 id_column: item["id"],
-                "affil_tokens": TokenProcessor.extracted_tokens(entities),
-                "affil_tokens_labeled": TokenProcessor.extracted_tokens_with_labels(entities)
+                "affil_tokens": tokens,
+                "affil_tokens_labeled": tokens_labeled
             })
         return pd.DataFrame(rows)
 

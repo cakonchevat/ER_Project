@@ -3,30 +3,29 @@ import pandas as pd
 import networkx as nx
 
 def build_graph_from_predictions(
-    df_pred: pd.DataFrame,
-    prob_col: str = "prob_match",
-    u_col: str = "src_id",
-    v_col: str = "cand_id",
-    keep_threshold: float = 0.45,
+    predictions: pd.DataFrame,
+    prob_column: str = "prob_match",
+    source_column: str = "src_id",
+    candidate_column: str = "cand_id",
+    threshold: float = 0.45,
 ) -> nx.Graph:
-    """Undirected weighted graph from classifier predictions."""
-    for c in (prob_col, u_col, v_col):
-        if c not in df_pred.columns:
-            raise ValueError(
-                f"build_graph_from_predictions expected '{c}'. "
-                f"Got: {list(df_pred.columns)}"
-            )
+    required = {prob_column, source_column, candidate_column}
+    missing = required - set(predictions.columns)
+    if missing:
+        raise ValueError(f"Missing required columns: {missing}")
 
-    G = nx.Graph()
-    for _, r in df_pred.iterrows():
-        p = float(r[prob_col])
-        if p < keep_threshold:
-            continue
-        u, v = int(r[u_col]), int(r[v_col])
-        if u == v:
-            continue
-        if G.has_edge(u, v):
-            G[u][v]["weight"] = max(G[u][v]["weight"], p)
-        else:
-            G.add_edge(u, v, weight=p)
-    return G
+    g = nx.Graph()
+    rows = predictions[
+        (predictions[prob_column] >= threshold)
+        & (predictions[source_column] != predictions[candidate_column])
+    ][[source_column, candidate_column, prob_column]]
+
+    for src, cand, prob in rows.itertuples(index=False):
+        src_i, cand_i = int(src), int(cand)
+        w = float(prob)
+        if g.has_edge(src_i, cand_i):
+            prev = float(g[src_i][cand_i].get("weight", 0.0))
+            w = max(prev, w)
+        g.add_edge(src_i, cand_i, weight=w)
+
+    return g

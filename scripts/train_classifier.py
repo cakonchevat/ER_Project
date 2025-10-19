@@ -1,4 +1,5 @@
 import pandas as pd
+import os
 from models.pairwise_classifier import train_pairwise_matcher
 
 feature_cols = [
@@ -11,8 +12,11 @@ feature_cols = [
 models = ["logreg", "rf", "xgb"]
 results = {}
 
-if __name__ == "main":
-    df = pd.read_csv("../data/feature_extraction/er_blocking_candidates_k40_features_labeled.csv")
+if __name__ == "__main__":
+    df = pd.read_csv("../data/feature_extraction/blocking_candidates_k40_features_labeled.csv")
+
+    output_dir = "../data/classifier_predictions"
+    os.makedirs(output_dir, exist_ok=True)
 
     for model_name in models:
         print(f"\nTraining {model_name.upper()} model")
@@ -29,7 +33,6 @@ if __name__ == "main":
 
         results[model_name] = matcher
 
-        # Save per-model predictions
         probs = matcher.predict_proba(df)
         preds = matcher.predict(df)
 
@@ -37,7 +40,7 @@ if __name__ == "main":
         out["prob_match"] = probs
         out["pred_match"] = preds
 
-        out_path = f"../data/classifier_predictions_{model_name}.csv"
+        out_path = os.path.join(output_dir, f"classifier_predictions_{model_name}.csv")
         out.to_csv(out_path, index=False)
 
         print(f"Saved predictions to {out_path}")

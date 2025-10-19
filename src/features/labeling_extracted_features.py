@@ -3,11 +3,11 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
-# In order to pass a dataset to a classifier, we need that dataset to be labeled
+# In order to pass a dataset to a classifier_predictions, we need that dataset to be labeled
 # However, up until now we only have a dataset where each row corresponds to a possible match of entities (src_id with cand_id)
 # and a vector of features (like edit_ratio, token_jaccard and so on), that quantify the textual (or phonetic) similarity between the two entities.
 
-# Before a classifier can predict whether a match from a possible-match entry, it needs ground truth labels.
+# Before a classifier_predictions can predict whether a match from a possible-match entry, it needs ground truth labels.
 # That is why this function exists -> to label the feature_extraction_k40.csv dataset
 def attach_labels(features_csv: Path, mapping_csv: Path, labeled_csv: Path | None = None) -> Path:
     df = pd.read_csv(features_csv)
@@ -33,6 +33,6 @@ def attach_labels(features_csv: Path, mapping_csv: Path, labeled_csv: Path | Non
 
 
 attach_labels(
-    features_csv=Path("../../data/feature_extraction/er_blocking_candidates_k40_features.csv"),
+    features_csv=Path("../../data/feature_extraction/blocking_candidates_k40_features.csv"),
     mapping_csv=Path("../../data/original/affiliationstrings_mapping.csv")
 )
